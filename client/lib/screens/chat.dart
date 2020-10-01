@@ -62,7 +62,7 @@ class _ChatPageState extends State<ChatPage> {
         setState(() {
           messages.add(msg);
           controller.animateTo(controller.position.maxScrollExtent,
-              duration: Duration(milliseconds: 200), curve: Curves.linear);
+              duration: Duration(milliseconds: 100), curve: Curves.linear);
         });
       });
     } catch (e) {
@@ -143,6 +143,9 @@ class _ChatPageState extends State<ChatPage> {
                     socket.emit("sendMessage", [val, theRoomId]);
                     editingController.clear();
                     messageNode.requestFocus();
+                    controller.animateTo(controller.position.maxScrollExtent,
+                        duration: Duration(milliseconds: 100),
+                        curve: Curves.linear);
                   } catch (e) {
                     print(e);
                   }
