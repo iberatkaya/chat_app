@@ -53,5 +53,3 @@ io.on("connection", (socket) => {
 const port = process.env.PORT || 5000;
 
 server.listen(port);
-
-[{ val: "a" }, { val: "b" }].find((a) => a.val === "a");
