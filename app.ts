@@ -18,8 +18,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "client", "public")));
 app.get("/", (req, res) => {
-  console.log(path.join(__dirname, "client", "public", "index.html"));
-  console.log;
   res.sendFile(path.join(__dirname, "client", "public", "index.html"));
 });
 
