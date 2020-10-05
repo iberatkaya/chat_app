@@ -1,8 +1,6 @@
 import 'dart:io';
-
-import 'package:client/screens/home.dart';
+import 'package:client/presentation/home.dart';
 import 'package:flutter/material.dart';
-import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 void main() {
   HttpOverrides.global = new MyHttpOverrides();
@@ -13,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Chat App',
       theme: ThemeData(
         appBarTheme: AppBarTheme(
           elevation: 1,

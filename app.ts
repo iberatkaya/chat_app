@@ -22,8 +22,6 @@ app.get("/", (req, res) => {
 
 io.on("connection", (socket) => {
   socket.on("joinRoom", (roomId: string, username: string) => {
-    console.log(roomId);
-    console.log(username);
     socket.join(roomId);
     io.to(roomId).emit("sendMessage", username + " joined room " + roomId);
   });
