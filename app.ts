@@ -3,7 +3,6 @@ import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import socketio from "socket.io";
-import * as uuid from "uuid";
 import http from "http";
 import cors from "cors";
 
@@ -21,31 +20,19 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "public", "index.html"));
 });
 
-app.get("/api/", function (req, res) {
-  res.json({
-    message: "API Endpoint",
-  });
-});
-
-app.post("/api/create-room", function (req, res) {
-  let roomId = uuid.v4();
-  res.json({
-    roomId: roomId,
-  });
-});
-
 io.on("connection", (socket) => {
-  console.log("user connected");
-  socket.on("joinRoom", (roomId) => {
+  socket.on("joinRoom", (roomId: string, username: string) => {
+    console.log(roomId);
+    console.log(username);
     socket.join(roomId);
-    io.to(roomId).emit(
-      "sendMessage",
-      "Here is your room id: " + roomId + ". Send it to your friends to chat!"
-    );
+    io.to(roomId).emit("sendMessage", username + " joined room " + roomId);
   });
-  socket.on("sendMessage", (message, roomId) => {
-    io.to(roomId).emit("sendMessage", message);
-  });
+  socket.on(
+    "sendMessage",
+    (message: string, roomId: string, username: string) => {
+      io.to(roomId).emit("sendMessage", message, username);
+    }
+  );
 });
 
 const port = process.env.PORT || 5000;
