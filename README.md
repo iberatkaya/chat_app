@@ -3,8 +3,8 @@
 > Chat App is a messaging app built with Flutter and Node.js using Socket.io and Express.js. It is available as a website deployed on Heroku, but can also be ran as a mobile app. Available at [https://ibkchatapp.herokuapp.com/](https://ibkchatapp.herokuapp.com/#/).
 
 <p align="center">
-    <img alt="Screenshot" src="https://raw.githubusercontent.com/iberatkaya/chat_app/master/screenshots/1.png" width="240" height="480">
-    <img alt="Screenshot" src="https://raw.githubusercontent.com/iberatkaya/chat_app/master/screenshots/2.png" width="240" height="480">
+    <img alt="Screenshot" src="https://raw.githubusercontent.com/iberatkaya/chat_app/master/screenshots/1.png" width="550" height="300">
+    <img alt="Screenshot" src="https://raw.githubusercontent.com/iberatkaya/chat_app/master/screenshots/2.png" width="550" height="300">
 </p>
 
 ## Authors
