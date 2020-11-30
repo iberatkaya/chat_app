@@ -1,3 +1,4 @@
+import 'package:bubble/bubble.dart';
 import 'package:client/domain/message/message.dart';
 import 'package:flutter/material.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
@@ -86,24 +87,47 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: SelectableText(widget.roomId),),
+      backgroundColor: Colors.blueGrey[50],
       body: Column(
         children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.9,
+          Expanded(
+            flex: 9,
             child: Container(
               child: ListView.builder(
+                padding: EdgeInsets.symmetric(vertical: 2, horizontal: 16),
                 controller: controller,
                 itemCount: messages.length,
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    title: SelectableText(messages[index].toString()),
+                  final message = messages[index];
+                  if (message.username == widget.username) {
+                    return Bubble(
+                      margin: BubbleEdges.only(top: 10),
+                      alignment: Alignment.topRight,
+                      nip: BubbleNip.rightTop,
+                      elevation: 8,
+                      color: Color.fromRGBO(225, 255, 199, 1.0),
+                      child: SelectableText(message.message,
+                        textAlign: TextAlign.right,
+                        style: TextStyle(fontSize: 17),
+                      ),
+                    );
+                  }
+                  return Bubble(
+                    margin: BubbleEdges.only(top: 10),
+                    alignment: Alignment.topLeft,
+                    nip: BubbleNip.leftTop,
+                    elevation: 8,
+                    child: SelectableText(message.message, 
+                      textAlign: TextAlign.left,
+                      style: TextStyle(fontSize: 17),
+                    ),
                   );
                 },
               ),
             ),
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.1,
+          Expanded(
             child: Row(
               children: [
                 SizedBox(
