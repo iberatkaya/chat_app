@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
                             ),
                           ],
                           title: Text(
-                              "Enter a room name and username to join or create a room"),
+                              "Enter a room name and username to join or create a room!"),
                           contentPadding: EdgeInsets.all(18),
                           content: Form(
                             key: formkey,
