@@ -103,9 +103,10 @@ class _ChatPageState extends State<ChatPage> {
                   if (message.username == widget.username) {
                     return Bubble(
                       margin: BubbleEdges.only(top: 8),
+                      radius: Radius.circular(12),
                       alignment: Alignment.topRight,
                       nip: BubbleNip.rightTop,
-                      elevation: 8,
+                      elevation: 2,
                       color: Color.fromRGBO(225, 255, 199, 1.0),
                       child: SelectableText(message.message,
                         textAlign: TextAlign.right,
@@ -115,9 +116,10 @@ class _ChatPageState extends State<ChatPage> {
                   }
                   return Bubble(
                     margin: BubbleEdges.only(top: 8),
+                    radius: Radius.circular(12),
                     alignment: Alignment.topLeft,
                     nip: BubbleNip.leftTop,
-                    elevation: 8,
+                    elevation: 2,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
