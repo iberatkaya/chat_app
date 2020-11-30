@@ -42,7 +42,7 @@ class _ChatPageState extends State<ChatPage> {
     }
   }
 
-  initSocket() {
+  void initSocket() {
     try {
       socket = IO.io('https://ibkchatapp.herokuapp.com/#/', <String, dynamic>{
         'transports': ['websocket'],
@@ -66,7 +66,7 @@ class _ChatPageState extends State<ChatPage> {
     }
   }
 
-  sendMessage() {
+  void sendMessage() {
     try {
       socket.emit("sendMessage",
           [messageController.text, widget.roomId, widget.username]);
@@ -102,25 +102,31 @@ class _ChatPageState extends State<ChatPage> {
                   final message = messages[index];
                   if (message.username == widget.username) {
                     return Bubble(
-                      margin: BubbleEdges.only(top: 10),
+                      margin: BubbleEdges.only(top: 8),
                       alignment: Alignment.topRight,
                       nip: BubbleNip.rightTop,
                       elevation: 8,
                       color: Color.fromRGBO(225, 255, 199, 1.0),
                       child: SelectableText(message.message,
                         textAlign: TextAlign.right,
-                        style: TextStyle(fontSize: 17),
+                        style: TextStyle(fontSize: 18),
                       ),
                     );
                   }
                   return Bubble(
-                    margin: BubbleEdges.only(top: 10),
+                    margin: BubbleEdges.only(top: 8),
                     alignment: Alignment.topLeft,
                     nip: BubbleNip.leftTop,
                     elevation: 8,
-                    child: SelectableText(message.message, 
-                      textAlign: TextAlign.left,
-                      style: TextStyle(fontSize: 17),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(message.username, style: TextStyle(fontSize: 11, color: Colors.grey,), textAlign: TextAlign.left,),
+                        SelectableText(message.message, 
+                          textAlign: TextAlign.left,
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ],
                     ),
                   );
                 },
